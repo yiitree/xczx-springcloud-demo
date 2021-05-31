@@ -45,16 +45,8 @@ fastdfs存储服务
 
 12. xc-service-ucenter-auth
 认证服务
-oauth2服务流程:
-第一步：
-客户端 --（客户端id）--> 微信的auth2微服务 - 数据库查询客户端id被注册，可以使用，然后让用户点击确认，确认可以登录，就同意，返回授权码
-客户端 <--（授权码）-- 微信的auth2微服务
 
-客户端 --（授权码+密码）--> 微信的auth2微服务 - 授权码没问题，然后使用私钥加密，生成令牌
-客户端 <--（令牌）-- 微信的auth2微服务
 
-客户端 --（令牌）--> 微信的用户资源微服务 - 使用公钥解密，发现可以，就返回用户信息
-客户端 <--（用户信息）-- 微信的用户资源微服务
 
 xc-govern-gateway
 xc-service-base-filesystem
@@ -66,4 +58,38 @@ xc-service-manage-media-processor
 xc-service-manage-order
 xc-service-search
 xc-service-ucenter
+
+
+## 认证模块讲解：
+xc-service-ucenter-auth 认证服务
+
+oauth2服务流程:
+
+客户端 --（客户端id）--> 微信的auth2微服务 - 数据库查询客户端id被注册，可以使用，然后让用户点击确认，确认可以登录，就同意，返回授权码\
+客户端 <--（授权码）-- 微信的auth2微服务
+
+客户端 --（授权码+密码）--> 微信的auth2微服务 - 授权码没问题，然后使用私钥加密，生成令牌\
+客户端 <--（令牌）-- 微信的auth2微服务
+
+客户端 --（令牌）--> 微信的用户资源微服务 - 使用公钥解密，发现可以，就返回用户信息\
+客户端 <--（用户信息）-- 微信的用户资源微服务或者其他的资源服务器
+
+所以：微服务框架为：
+认证服务器 + 资源服务器
+
+客户端从认证服务器先拿授权码，再得令牌（由资源服务器通过私钥生成），令牌到手后，
+去访问其他微服务（叫做资源服务器），通过公钥解密，获得想要的内容
+
+所以：除了认证服务微服务是oauth2的以为，所有其他微服务也要加入认证功能，（要存放公钥）
+
+1. 添加依赖
+<!--springsecurity安全框架-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-oauth2</artifactId>
+</dependency>
+
+2. 增加资源微服务配置类ResourceServerConfig
+
+jti小令牌
 

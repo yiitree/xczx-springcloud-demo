@@ -48,7 +48,7 @@ public class AuthController implements AuthControllerApi {
     /**
      * 用户登录（用户名、密码、验证码）
      *
-     * 申请授权码-有了授权码-去授权中心-获得令牌-携带令牌访问资源
+     * 申请授权码 - 有了授权码 - 去授权中心 - 获得令牌 - 携带令牌访问资源
      * @param loginRequest
      * @return
      */
@@ -58,7 +58,7 @@ public class AuthController implements AuthControllerApi {
         if(loginRequest == null || StringUtils.isEmpty(loginRequest.getUsername())){
             ExceptionCast.cast(AuthCode.AUTH_USERNAME_NONE);
         }
-        if(loginRequest == null || StringUtils.isEmpty(loginRequest.getPassword())){
+        if(StringUtils.isEmpty(loginRequest.getPassword())){
             ExceptionCast.cast(AuthCode.AUTH_PASSWORD_NONE);
         }
         //账号
@@ -66,7 +66,7 @@ public class AuthController implements AuthControllerApi {
         //密码
         String password = loginRequest.getPassword();
         //申请令牌
-        AuthToken authToken =  authService.login(username,password,clientId,clientSecret);
+        AuthToken authToken = authService.login(username,password,clientId,clientSecret);
 
         //用户身份令牌
         String access_token = authToken.getAccess_token();

@@ -56,7 +56,7 @@ public class TestClient {
         LinkedMultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type","password");
         body.add("username","itcast");
-        body.add("password","12322");
+        body.add("password","123");
 
         HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<>(body, header);
         //String url, HttpMethod method, @Nullable HttpEntity<?> requestEntity, Class<T> responseType, Object... uriVariables
@@ -91,6 +91,8 @@ public class TestClient {
         //原始密码
         String password = "111111";
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        System.out.println(bCryptPasswordEncoder.encode("123"));
+
         //使用BCrypt加密，每次加密使用一个随机盐
         for(int i=0;i<10;i++){
             String encode = bCryptPasswordEncoder.encode(password);
