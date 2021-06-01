@@ -10,7 +10,9 @@
 通用组件，继承utils的基础上（其实可以和util模块合并），
     1. 加入异常处理，
     2. 通用返回，
-    3. Feign拦截器的权限认证，
+    3. Feign拦截器
+        * 主要是微服务之间调用，传递header、cookie信息，传递jwt令牌的
+        * zuul到微服务是可以传递令牌的，但是微服务和微服务之间是不走网关的，所以需要单独设置feign拦截器，加上相关配置
     4. base类（BaseController、BaseData等）
     5. 其他工具包：swagger、openfeign等
 

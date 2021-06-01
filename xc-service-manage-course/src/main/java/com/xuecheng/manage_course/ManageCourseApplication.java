@@ -35,6 +35,10 @@ public class ManageCourseApplication {
         return new RestTemplate(new OkHttp3ClientHttpRequestFactory());
     }
 
+    /**
+     * 自定义的openfign --- 在common定义的，这在里使用是为了加到该微服务中
+     * @return
+     */
     @Bean
     public FeignClientInterceptor getFeignClientInterceptor(){
         return new FeignClientInterceptor();

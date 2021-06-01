@@ -14,6 +14,7 @@ import com.xuecheng.framework.utils.CookieUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -110,6 +111,8 @@ public class AuthController implements AuthControllerApi {
     }
 
     /**
+     * 由于登录功能，返回前端的是jti小令牌，因此前端携带jti（保存在cookie中）访问该接口，
+     * 后端从redis中获得用户jwt完整令牌返回
      * 申请令牌
      * @return
      */
@@ -121,8 +124,7 @@ public class AuthController implements AuthControllerApi {
         if(uid == null){
             return new JwtResult(CommonCode.FAIL,null);
         }
-
-        //拿身份令牌从redis中查询jwt令牌
+        //拿身份令牌jti从redis中查询jwt令牌
         AuthToken userToken = authService.getUserToken(uid);
         if(userToken!=null){
             //将jwt令牌返回给用户

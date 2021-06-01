@@ -6,7 +6,7 @@ spring:
   application:
     name: xc-govern-gateway
   redis:
-    host: ${REDIS_HOST:127.0.0.1}
+    host: ${REDIS_HOST:mnrui.top}
     port: ${REDIS_PORT:6379}
     timeout: 5000 #连接超时 毫秒
     jedis:
@@ -15,36 +15,39 @@ spring:
         maxIdle: 3
         minIdle: 1
         maxWait: -1 #连接池最大等行时间 -1没有限制
+
+# 配置网关路由
 zuul:
   routes:
-    manage-course:
-      path: /course/**
-      serviceId: xc-service-manage-course #微服务名称，网关会从eureka中获取该服务名称下的服务实例的地址
-      # 例子：将请求转发到http://localhost:31200/course
-      #url: http://www.baidu.com #也可指定url，此url也可以是外网地址\
-      strip-prefix: false #true：代理转发时去掉前缀，false:代理转发时不去掉前缀
-      sensitiveHeaders:  #默认zuul会屏蔽cookie，cookie不会传到下游服务，这里设置为空则取消默认的黑名单，如果设置了具体的头信息则不会传到下游服务
-      #   ignoredHeaders: 默认为空表示不过虑任何头
+    # 2、学习微服务
     xc-service-learning:  #路由名称，名称任意，保持所有路由名称唯一
-      path: /learning/**
+      path: /learning/** # 所有改路径的，路由到每一个微服务  例：原来：8080/learning/getId --- 现：/api/learning/getId
       serviceId: xc-service-learning #指定服务id，从Eureka中找到服务的ip和端口
-      strip-prefix: false
+      strip-prefix: false # 转发的时候是否去掉前缀：原：localhost:8080/learning/getId --- 现：localhost:8080/getId
+      # 默认zuul会屏蔽cookie往下传递，这里添加白名单，
+      #假如设置为sensitiveHeaders: uid，就只把cookie中uid往下传，其他拦截掉，如果什么都不填，就说明不拦截，直接什么都往下传
       sensitiveHeaders:
+      # 设置不过滤头信息，默认就是什么都往下传，所以不用修改
+      # ignredHeaders:
+    # 3、消息微服务
     manage-cms:
       path: /cms/**
       serviceId: xc-service-manage-cms
       strip-prefix: false
       sensitiveHeaders:
+    # 4、系统微服务
     manage-sys:
       path: /sys/**
       serviceId: xc-service-manage-cms
       strip-prefix: false
       sensitiveHeaders:
+    # 5、用户微服务
     service-ucenter:
       path: /ucenter/**
       serviceId: xc-service-ucenter
       sensitiveHeaders:
       strip-prefix: false
+    # 6、订单微服务
     xc-service-manage-order:
       path: /order/**
       serviceId: xc-service-manage-order

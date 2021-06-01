@@ -30,13 +30,9 @@ public class LoginFilter extends ZuulFilter {
     public String filterType() {
         /**
          pre：请求在被路由之前执行
-
          routing：在路由请求时调用
-
          post：在routing和errror过滤器之后调用
-
          error：处理请求时发生错误调用
-
          */
         return "pre";
     }
@@ -53,8 +49,12 @@ public class LoginFilter extends ZuulFilter {
         return true;
     }
 
-    //过虑器的内容
-    //测试的需求：过虑所有请求，判断头部信息是否有Authorization，如果没有则拒绝访问，否则转发到微服务。
+    /**
+     * 过虑器的内容
+     * 测试的需求：过虑所有请求，判断头部信息是否有Authorization，如果没有则拒绝访问，否则转发到微服务。
+     * @return
+     * @throws ZuulException
+     */
     @Override
     public Object run() throws ZuulException {
         RequestContext requestContext = RequestContext.getCurrentContext();

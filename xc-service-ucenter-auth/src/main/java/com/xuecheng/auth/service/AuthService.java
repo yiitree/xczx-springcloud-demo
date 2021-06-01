@@ -146,7 +146,7 @@ public class AuthService {
             }
         });
 
-        // 发送请求
+        // 发送远程请求 http://localhost:40400/auth/oauth/token，springsecurity自带的申请令牌的接口
         ResponseEntity<Map> exchange = restTemplate.exchange(authUrl, HttpMethod.POST, httpEntity, Map.class);
 
         // 从请求返回中获取令牌信息
@@ -155,13 +155,14 @@ public class AuthService {
             bodyMap.get("access_token") == null ||
                 bodyMap.get("refresh_token") == null ||
                 bodyMap.get("jti") == null){
-
-            //解析spring security返回的错误信息
+            // 解析spring security返回的错误信息，账号不存在和密码错误springsecurity返回的内容不一样
             if(bodyMap!=null && bodyMap.get("error_description")!=null){
                 String error_description = (String) bodyMap.get("error_description");
                 if(error_description.indexOf("UserDetailsService returned null")>=0){
+                    // 账号不存在
                     ExceptionCast.cast(AuthCode.AUTH_ACCOUNT_NOTEXISTS);
                 }else if(error_description.indexOf("坏的凭证")>=0){
+                    // 密码错误
                     ExceptionCast.cast(AuthCode.AUTH_CREDENTIAL_ERROR);
                 }
             }

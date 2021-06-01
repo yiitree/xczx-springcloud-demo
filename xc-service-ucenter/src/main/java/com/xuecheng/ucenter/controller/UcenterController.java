@@ -19,6 +19,11 @@ public class UcenterController implements UcenterControllerApi {
     @Autowired
     UserService userService;
 
+    /**
+     * 通过用户名查询用户信息
+     * @param username
+     * @return
+     */
     @Override
     @GetMapping("/getuserext")
     public XcUserExt getUserext(@RequestParam("username") String username) {
