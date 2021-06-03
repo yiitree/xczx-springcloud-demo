@@ -11,5 +11,5 @@ import java.util.List;
 @Mapper
 public interface XcMenuMapper {
     //根据用户id查询用户的权限
-    public List<XcMenu> selectPermissionByUserId(String userid);
+    List<XcMenu> selectPermissionByUserId(String userid);
 }

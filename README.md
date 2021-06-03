@@ -94,4 +94,3 @@ oauth2服务流程:
 2. 增加资源微服务配置类ResourceServerConfig
 
 jti小令牌
-

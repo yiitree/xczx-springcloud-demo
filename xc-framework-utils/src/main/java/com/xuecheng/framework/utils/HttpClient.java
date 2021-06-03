@@ -27,9 +27,9 @@ import java.util.Map;
 
 /**
  * http请求客户端
- * 
+ *
  * @author Administrator
- * 
+ *
  */
 public class HttpClient {
 	private String url;
@@ -74,19 +74,19 @@ public class HttpClient {
 		param.put(key, value);
 	}
 
-	public void post() throws ClientProtocolException, IOException {
+	public void post() throws IOException {
 		HttpPost http = new HttpPost(url);
 		setEntity(http);
 		execute(http);
 	}
 
-	public void put() throws ClientProtocolException, IOException {
+	public void put() throws IOException {
 		HttpPut http = new HttpPut(url);
 		setEntity(http);
 		execute(http);
 	}
 
-	public void get() throws ClientProtocolException, IOException {
+	public void get() throws IOException {
 		if (param != null) {
 			StringBuilder url = new StringBuilder(this.url);
 			boolean isFirst = true;
@@ -118,8 +118,8 @@ public class HttpClient {
 		}
 	}
 
-	private void execute(HttpUriRequest http) throws ClientProtocolException,
-			IOException {
+	private void execute(HttpUriRequest http) throws
+            IOException {
 		CloseableHttpClient httpClient = null;
 		try {
 			if (isHttps) {

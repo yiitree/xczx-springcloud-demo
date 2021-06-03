@@ -13,7 +13,7 @@ public enum LearningCode implements ResultCode {
     int code;
     //提示信息
     String message;
-    private LearningCode(boolean success, int code, String message){
+    LearningCode(boolean success, int code, String message){
         this.success = success;
         this.code = code;
         this.message = message;

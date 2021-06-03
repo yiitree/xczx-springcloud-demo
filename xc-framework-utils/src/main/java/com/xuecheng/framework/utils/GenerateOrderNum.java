@@ -10,7 +10,7 @@ public class GenerateOrderNum {
     /**
      * 锁对象，可以为任意对象
      */
-    private static Object lockObj = "lockerOrder";
+    private static final Object lockObj = "lockerOrder";
     /**
      * 订单号生成计数器
      */
@@ -18,7 +18,7 @@ public class GenerateOrderNum {
     /**
      * 每毫秒生成订单号数量最大值
      */
-    private int maxPerMSECSize=1000;
+    private final int maxPerMSECSize=1000;
 
     /**
      *

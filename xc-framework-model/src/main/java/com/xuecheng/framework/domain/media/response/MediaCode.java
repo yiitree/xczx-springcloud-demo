@@ -27,7 +27,7 @@ public enum MediaCode implements ResultCode {
     //提示信息
     @ApiModelProperty(value = "媒资系统操作提示", example = "文件在系统已存在！", required = true)
     String message;
-    private MediaCode(boolean success,int code, String message){
+    MediaCode(boolean success, int code, String message){
         this.success = success;
         this.code = code;
         this.message = message;

@@ -17,6 +17,11 @@ public class CustomUserAuthenticationConverter extends DefaultUserAuthentication
     @Autowired
     UserDetailsService userDetailsService;
 
+    /**
+     * 自定义jwt中所包含的信息
+     * @param authentication
+     * @return
+     */
     @Override
     public Map<String, ?> convertUserAuthentication(Authentication authentication) {
         LinkedHashMap response = new LinkedHashMap();

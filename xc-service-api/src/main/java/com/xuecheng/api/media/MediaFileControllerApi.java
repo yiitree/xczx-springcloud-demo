@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiOperation;
 public interface MediaFileControllerApi {
 
     @ApiOperation("我的媒资文件查询列表")
-    public QueryResponseResult<MediaFile> findList(int page, int size, QueryMediaFileRequest queryMediaFileRequest);
+    QueryResponseResult<MediaFile> findList(int page, int size, QueryMediaFileRequest queryMediaFileRequest);
 
 }
 

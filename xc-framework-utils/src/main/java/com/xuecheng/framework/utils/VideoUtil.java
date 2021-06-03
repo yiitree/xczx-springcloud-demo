@@ -30,10 +30,7 @@ public class VideoUtil {
         if(source_time == null || target_time == null){
             return false;
         }
-        if(source_time.equals(target_time)){
-            return true;
-        }
-        return false;
+        return source_time.equals(target_time);
     }
 
     //获取视频时间(时：分：秒：毫秒)
@@ -104,7 +101,7 @@ public class VideoUtil {
                     finished = true;
 
                 } catch (IllegalThreadStateException e) {
-                    Thread.currentThread().sleep(1000);//休眠1秒
+                    Thread.sleep(1000);//休眠1秒
                     retry++;
                 }
             }

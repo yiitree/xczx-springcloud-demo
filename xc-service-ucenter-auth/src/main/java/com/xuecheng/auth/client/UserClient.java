@@ -13,5 +13,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface UserClient {
     //根据账号查询用户信息
     @GetMapping("/ucenter/getuserext")
-    public XcUserExt getUserext(@RequestParam("username") String username);
+    XcUserExt getUserext(@RequestParam("username") String username);
 }

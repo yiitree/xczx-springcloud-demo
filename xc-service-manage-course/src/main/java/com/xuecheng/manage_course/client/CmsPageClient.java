@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface CmsPageClient {
     //根据页面id查询页面信息，远程调用cms请求数据
     @GetMapping("/cms/page/get/{id}")//用GetMapping标识远程调用的http的方法类型
-    public CmsPage findCmsPageById(@PathVariable("id") String id);
+    CmsPage findCmsPageById(@PathVariable("id") String id);
 
     //添加页面，用于课程预览
     @PostMapping("/cms/page/save")
-    public CmsPageResult saveCmsPage(@RequestBody CmsPage cmsPage);
+    CmsPageResult saveCmsPage(@RequestBody CmsPage cmsPage);
 
     //一键发布页面
     @PostMapping("/cms/page/postPageQuick")
-    public CmsPostPageResult postPageQuick(@RequestBody CmsPage cmsPage);
+    CmsPostPageResult postPageQuick(@RequestBody CmsPage cmsPage);
 
 }

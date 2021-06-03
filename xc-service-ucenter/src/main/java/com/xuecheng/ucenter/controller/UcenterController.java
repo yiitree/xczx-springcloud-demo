@@ -20,7 +20,7 @@ public class UcenterController implements UcenterControllerApi {
     UserService userService;
 
     /**
-     * 通过用户名查询用户信息
+     * 通过用户名查询用户信息 所有信息 + 权限信息
      * @param username
      * @return
      */
@@ -29,4 +29,5 @@ public class UcenterController implements UcenterControllerApi {
     public XcUserExt getUserext(@RequestParam("username") String username) {
         return userService.getUserExt(username);
     }
+
 }

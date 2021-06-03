@@ -5,7 +5,7 @@ spring:
     name: xc-service-ucenter
   datasource:
     druid:
-      url: ${MYSQL_URL:jdbc:mysql://localhost:3306/xc_user?characterEncoding=utf-8}
+      url: ${MYSQL_URL:jdbc:mysql://mnrui.top:3306/xc_user?characterEncoding=utf-8}
       username: root
       password: root
       driverClassName: com.mysql.jdbc.Driver

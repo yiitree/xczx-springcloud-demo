@@ -16,7 +16,6 @@ import java.util.Date;
 @Document(collection = "user_test")
 public class UserTest {
 
-
     @Id
     private String id;
     private String name;

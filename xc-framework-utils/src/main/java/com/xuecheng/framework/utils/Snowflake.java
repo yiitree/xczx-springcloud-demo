@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class Snowflake {
 
-    private static Logger log = LoggerFactory.getLogger(Snowflake.class);
+    private static final Logger log = LoggerFactory.getLogger(Snowflake.class);
 //    private static Logger
 	/*
 	 * bits allocations for timeStamp, datacenterId, workerId and sequence

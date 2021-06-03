@@ -31,7 +31,7 @@ public enum AuthCode implements ResultCode {
     //提示信息
     @ApiModelProperty(value = "操作提示", example = "操作过于频繁！", required = true)
     String message;
-    private AuthCode(boolean success, int code, String message){
+    AuthCode(boolean success, int code, String message){
         this.success = success;
         this.code = code;
         this.message = message;

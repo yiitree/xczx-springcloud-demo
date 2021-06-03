@@ -19,30 +19,30 @@ public interface CmsPageControllerApi {
             @ApiImplicitParam(name="page",value = "页码",required=true,paramType="path",dataType="int"),
             @ApiImplicitParam(name="size",value = "每页记录数",required=true,paramType="path",dataType="int")
     })
-    public QueryResponseResult findList(int page, int size, QueryPageRequest queryPageRequest);
+    QueryResponseResult findList(int page, int size, QueryPageRequest queryPageRequest);
     //新增页面
     @ApiOperation("新增页面")
-    public CmsPageResult add(CmsPage cmsPage);
+    CmsPageResult add(CmsPage cmsPage);
 
     //根据页面id查询页面信息
     @ApiOperation("根据页面id查询页面信息")
-    public CmsPage findById(String id);
+    CmsPage findById(String id);
     //修改页面
     @ApiOperation("修改页面")
-    public CmsPageResult edit(String id,CmsPage cmsPage);
+    CmsPageResult edit(String id, CmsPage cmsPage);
 
     //删除页面
     @ApiOperation("删除页面")
-    public ResponseResult delete(String id);
+    ResponseResult delete(String id);
 
     //页面发布
     @ApiOperation("页面发布")
-    public ResponseResult post(String pageId);
+    ResponseResult post(String pageId);
 
     @ApiOperation("保存页面")
-    public CmsPageResult save(CmsPage cmsPage);
+    CmsPageResult save(CmsPage cmsPage);
 
     @ApiOperation("一键发布页面")
-    public CmsPostPageResult postPageQuick(CmsPage cmsPage);
+    CmsPostPageResult postPageQuick(CmsPage cmsPage);
 
 }

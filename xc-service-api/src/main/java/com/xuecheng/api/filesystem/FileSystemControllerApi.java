@@ -13,9 +13,9 @@ public interface FileSystemControllerApi {
 
     //上传文件
     @ApiOperation("上传文件接口")
-    public UploadFileResult  upload(MultipartFile multipartFile,
-                                    String filetag,
-                                    String businesskey,
-                                    String metadata);
+    UploadFileResult  upload(MultipartFile multipartFile,
+                             String filetag,
+                             String businesskey,
+                             String metadata);
 
 }
